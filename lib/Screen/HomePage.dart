@@ -65,40 +65,39 @@ class _HomePageState extends State<HomePage> {
                 Image.asset(AppAssets.BUDDY_LOGO, height: 16.h),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.2),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    appButton(
-                        height: 06.h,
-                        width: 36.w,
-                        radius: 3.h,
-                        color: AppColors.WHITE_COLOR,
-                        onTap: () {
-                          playSound();
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      appButton(
+                          height: 06.h,
+                          width: 36.w,
+                          radius: 3.h,
+                          color: AppColors.WHITE_COLOR,
+                          onTap: () {
+                            playSound();
 
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      ScanPage(widget.cameras)));
-                        },
-                        child: appText(
-                            title: 'Scan Play',
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16)),
-                    appButton(
-                        height: 06.h,
-                        width: 36.w,
-                        radius: 3.h,
-                        onTap: () {
-                          playSound();
-                        },
-                        color: AppColors.WHITE_COLOR,
-                        child: appText(
-                            title: 'Pick Play',
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16)),
-                  ],
-                )
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ScanPage(widget.cameras)));
+                          },
+                          child: appText(
+                              title: 'Scan Play',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16)),
+                      appButton(
+                          height: 06.h,
+                          width: 36.w,
+                          radius: 3.h,
+                          onTap: () {
+                            playSound();
+                          },
+                          color: AppColors.WHITE_COLOR,
+                          child: appText(
+                              title: 'Pick Play',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16)),
+                    ])
               ],
             ),
           ),

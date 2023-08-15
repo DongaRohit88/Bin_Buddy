@@ -1,11 +1,9 @@
 // ignore_for_file: constant_identifier_names
 
-
-
 import 'package:flutter/material.dart';
 
+// App Use Colors
 class AppColors {
-  
   static const Color PRIMERY_COLOR = Color(0xff4A6917);
 
   static const Color CIRCLE_COLOR = Color(0xFF62992B);
@@ -21,6 +19,4 @@ class AppColors {
   static const Color LIGHT_YELLOW_COLOR = Color(0xffFFD298);
 
   static const Color RED_COLOR = Colors.red;
-
-  
 }

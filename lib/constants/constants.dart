@@ -4,6 +4,7 @@ import 'package:audioplayers/audioplayers.dart';
 
 import '../Screen/HomePage.dart';
 
+//! App Use Text String
 class Constants {
   static const String appName = 'Bin Buddy';
 
@@ -22,6 +23,7 @@ class Constants {
   static int? score;
 }
 
+// Play Sound Widget on off
 void playSound() async {
   if (isplaying) {
     AudioCache audioCache = AudioCache();

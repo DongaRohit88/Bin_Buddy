@@ -9,9 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class AnalysingScreen extends StatefulWidget {
-  const AnalysingScreen({
-    super.key,
-  });
+  const AnalysingScreen({super.key});
 
   @override
   State<AnalysingScreen> createState() => _ScanResultScreenState();

@@ -24,12 +24,14 @@ class _WinScreenState extends State<WinScreen> {
     super.initState();
   }
 
+//! Total Score Get SharedPreferences
   getTotalScore() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Constants.score = sharedPreferences.getInt('total_score');
     Constants.level = sharedPreferences.getInt('level');
   }
 
+//! Level Score Dialog
   _initializeDialog() {
     Future.delayed(Duration.zero, () async {
       await AppDialog.showScoreDialog(context,
@@ -41,11 +43,10 @@ class _WinScreenState extends State<WinScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async {
-        return await Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => ScanPage(cameras!)));
-      },
-      child: const Scaffold(backgroundColor: AppColors.PRIMERY_COLOR),
-    );
+        onWillPop: () async {
+          return await Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => ScanPage(cameras!)));
+        },
+        child: const Scaffold(backgroundColor: AppColors.PRIMERY_COLOR));
   }
 }
