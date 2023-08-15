@@ -11,6 +11,7 @@ import 'package:sizer/sizer.dart';
 
 import '../main.dart';
 
+// Splash Screen view
 class SplashPage extends StatefulWidget {
   final List<CameraDescription> cameras;
   const SplashPage({super.key, required this.cameras});
@@ -38,12 +39,14 @@ class _SplashPageState extends State<SplashPage> {
         MaterialPageRoute(builder: (context) => HomePage(cameras: cameras!)));
   }
 
+// FillScore
   Future<void> fillScore() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setInt('total_score', Constants.score ?? 0);
     prefs.setInt('level', Constants.level ?? 0);
   }
 
+// Get Total Score SharedPreferences
   getTotalScore() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     Constants.score = prefs.getInt('total_score') ?? 0;

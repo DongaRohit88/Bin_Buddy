@@ -25,20 +25,11 @@ class ScanResultScreen extends StatefulWidget {
 
 class _ScanResultScreenState extends State<ScanResultScreen> {
   @override
-  void initState() {
-    print("recognitions List : ${widget.recognitions}");
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        return await Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ScanPage(cameras!),
-            ));
+        return await Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => ScanPage(cameras!)));
       },
       child: Scaffold(
         backgroundColor: AppColors.PRIMERY_COLOR,
@@ -61,14 +52,13 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                               ));
                         },
                         child: Container(
-                          height: 10.w,
-                          width: 10.w,
-                          decoration: BoxDecoration(
-                              color: AppColors.CIRCLE_COLOR,
-                              borderRadius: BorderRadius.circular(10.w)),
-                          child: Icon(Icons.close,
-                              color: AppColors.WHITE_COLOR, size: 3.h),
-                        ),
+                            height: 10.w,
+                            width: 10.w,
+                            decoration: BoxDecoration(
+                                color: AppColors.CIRCLE_COLOR,
+                                borderRadius: BorderRadius.circular(10.w)),
+                            child: Icon(Icons.close,
+                                color: AppColors.WHITE_COLOR, size: 3.h)),
                       ))),
               SizedBox(height: 5.h),
               appText(

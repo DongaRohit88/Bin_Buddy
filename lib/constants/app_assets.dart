@@ -1,9 +1,6 @@
-
-
 // ignore_for_file: constant_identifier_names
-
+// App Use Image and json data
 class AppAssets {
-  
   static const String BUDDY_LOGO = 'assets/images/buddy_logo.png';
   static const String QR_CODE = 'assets/images/qr_code.png';
   static const String LINE = 'assets/images/line.png';
@@ -19,5 +16,4 @@ class AppAssets {
   static const String ALERT = 'assets/images/alert.png';
 
   static const String LINE_LOTTIE = 'assets/lottie/line.json';
-
 }

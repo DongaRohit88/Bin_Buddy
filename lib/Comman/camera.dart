@@ -31,7 +31,7 @@ class _CameraState extends State<Camera> {
     if (widget.cameras == null || widget.cameras.length < 1) {
       print('No camera is found');
     } else {
-      controller =  CameraController(
+      controller = CameraController(
         widget.cameras[0],
         ResolutionPreset.high,
       );
@@ -128,11 +128,12 @@ class _CameraState extends State<Camera> {
     var previewRatio = previewH / previewW;
 
     return OverflowBox(
-      maxHeight:
-          screenRatio > previewRatio ? screenH : screenW / previewW * previewH,
-      maxWidth:
-          screenRatio > previewRatio ? screenH / previewH * previewW : screenW,
-      child: CameraPreview(controller),
-    );
+        maxHeight: screenRatio > previewRatio
+            ? screenH
+            : screenW / previewW * previewH,
+        maxWidth: screenRatio > previewRatio
+            ? screenH / previewH * previewW
+            : screenW,
+        child: CameraPreview(controller));
   }
 }

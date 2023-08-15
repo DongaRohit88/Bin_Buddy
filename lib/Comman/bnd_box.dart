@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'models.dart';
 
+// scan view detected Class
 class BndBox extends StatelessWidget {
   final List<dynamic> results;
   final int previewH;
@@ -55,18 +56,14 @@ class BndBox extends StatelessWidget {
           child: Container(
               padding: const EdgeInsets.only(top: 5.0, left: 5.0),
               decoration: BoxDecoration(
-                border: Border.all(
-                  color: AppColors.PRIMERY_COLOR,
-                  width: 3.0,
-                ),
-              ),
+                  border:
+                      Border.all(color: AppColors.PRIMERY_COLOR, width: 3.0)),
               child: Text(
-                "${re["detectedClass"]} ${(re["confidenceInClass"] * 100).toStringAsFixed(0)}%",
-                style: const TextStyle(
-                    color: AppColors.PRIMERY_COLOR,
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.bold),
-              )),
+                  "${re["detectedClass"]} ${(re["confidenceInClass"] * 100).toStringAsFixed(0)}%",
+                  style: const TextStyle(
+                      color: AppColors.PRIMERY_COLOR,
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold))),
         );
       }).toList();
     }

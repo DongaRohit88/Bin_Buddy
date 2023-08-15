@@ -2,6 +2,7 @@ import 'package:bin_buddy/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+// App Button Comman
 Widget appButton(
     {Widget? child,
     VoidCallback? onTap,

@@ -21,11 +21,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   Future<bool> navigat() async {
     await SystemNavigator.pop();
     return true;
@@ -95,8 +90,6 @@ class _HomePageState extends State<HomePage> {
                         width: 36.w,
                         radius: 3.h,
                         onTap: () {
-                          // player.play('note1.wav');
-                          // player.play(audioasset);
                           playSound();
                         },
                         color: AppColors.WHITE_COLOR,

@@ -16,121 +16,100 @@ class AppDialog {
   static Future showScoreDialog(BuildContext context,
       {String? score, String? message, String? level}) async {
     return await showCupertinoDialog(
-      context: context,
-      builder: (context) {
-        return Scaffold(
-            backgroundColor: Colors.transparent,
-            body: Center(
-              child: SizedBox(
-                height: 57.h,
-                child: Stack(alignment: Alignment.topCenter, children: <Widget>[
-                  Dialog(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    child: Container(
-                      height: 50.h,
-                      decoration: BoxDecoration(
-                          color: AppColors.LIGHT_YELLOW_COLOR,
-                          borderRadius: BorderRadius.circular(3.w)),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(height: 2.h),
-                            Image.asset(AppAssets.RATING, scale: 1.3.h),
-                            SizedBox(height: 2.h),
-                            Container(
-                                height: 8.h,
-                                width: 55.w,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(3.w),
-                                    color: AppColors.WHITE_COLOR,
+        context: context,
+        builder: (context) {
+          return Scaffold(
+              backgroundColor: Colors.transparent,
+              body: Center(
+                child: SizedBox(
+                  height: 57.h,
+                  child:
+                      Stack(alignment: Alignment.topCenter, children: <Widget>[
+                    Dialog(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)),
+                        child: Container(
+                          height: 50.h,
+                          decoration: BoxDecoration(
+                              color: AppColors.LIGHT_YELLOW_COLOR,
+                              borderRadius: BorderRadius.circular(3.w)),
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(height: 2.h),
+                                Image.asset(AppAssets.RATING, scale: 1.3.h),
+                                SizedBox(height: 2.h),
+                                Container(
+                                    height: 8.h,
+                                    width: 55.w,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(3.w),
+                                        color: AppColors.WHITE_COLOR,
+                                        border: Border.all(
+                                            color: AppColors.CIRCLE_COLOR)),
+                                    child: Center(
+                                      child: appText(
+                                          title: score,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 2.5.h),
+                                    )),
+                                SizedBox(height: 2.h),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      scoreOption(image: AppAssets.COMPOST),
+                                      SizedBox(width: 2.5.w),
+                                      scoreOption(image: AppAssets.RUBBISH),
+                                      SizedBox(width: 2.5.w),
+                                      scoreOption(image: AppAssets.RECYCLING),
+                                    ]),
+                                SizedBox(height: 3.h),
+                                appButton(
+                                    width: 55.w,
+                                    onTap: () {
+                                      playSound();
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ScanPage(cameras!)));
+                                    },
+                                    child: Center(
+                                        child: appText(
+                                            title: 'Continue!',
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 3.h,
+                                            color: AppColors.WHITE_COLOR)),
+                                    color: AppColors.PRIMERY_COLOR,
                                     border: Border.all(
-                                        color: AppColors.CIRCLE_COLOR)),
-                                child: Center(
-                                  child: appText(
-                                      title: score,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 2.5.h),
-                                )),
-                            SizedBox(height: 2.h),
-                            Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  scoreOption(image: AppAssets.COMPOST),
-                                  SizedBox(width: 2.5.w),
-                                  scoreOption(image: AppAssets.RUBBISH),
-                                  SizedBox(width: 2.5.w),
-                                  scoreOption(image: AppAssets.RECYCLING),
-                                ]),
-                            SizedBox(height: 3.h),
-                            appButton(
-                                width: 55.w,
-                                onTap: () {
-                                  playSound();
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            ScanPage(cameras!)),
-                                  );
-                                },
-                                child: Center(
-                                  child: appText(
-                                      title: 'Continue!',
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 3.h,
-                                      color: AppColors.WHITE_COLOR),
-                                ),
-                                color: AppColors.PRIMERY_COLOR,
-                                border: Border.all(
-                                    color: AppColors.CIRCLE_COLOR,
-                                    width: 0.8.w))
-                          ]),
-                    ),
-                  ),
-                  Container(
-                      height: 7.h,
-                      width: 45.w,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(3.w),
-                          color: AppColors.RED_COLOR,
-                          boxShadow: const [
-                            BoxShadow(
-                                blurRadius: 1.5,
-                                color: AppColors.GREY_COLOR,
-                                offset: Offset(0, 3))
-                          ]),
-                      child: Center(
-                        child: appText(
-                          title: level,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 4.h,
-                          color: AppColors.WHITE_COLOR,
-                        ),
-                      )),
-                  // Container(
-                  //   margin: EdgeInsets.only(
-                  //     top: 2.h,
-                  //     right: 9.5.w,
-                  //   ),
-                  //   alignment: Alignment.topRight,
-                  //   child: CircleAvatar(
-                  //     radius: 2.3.h,
-                  //     backgroundColor: AppColors.CIRCLE_COLOR,
-                  //     child: IconButton(
-                  //       icon: Icon(
-                  //         Icons.close,
-                  //         size: 4.8.w,
-                  //       ),
-                  //       onPressed: () => Navigator.pop(context, false),
-                  //     ),
-                  //   ),
-                  // )
-                ]),
-              ),
-            ));
-      },
-    );
+                                        color: AppColors.CIRCLE_COLOR,
+                                        width: 0.8.w))
+                              ]),
+                        )),
+                    Container(
+                        height: 7.h,
+                        width: 45.w,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(3.w),
+                            color: AppColors.RED_COLOR,
+                            boxShadow: const [
+                              BoxShadow(
+                                  blurRadius: 1.5,
+                                  color: AppColors.GREY_COLOR,
+                                  offset: Offset(0, 3))
+                            ]),
+                        child: Center(
+                          child: appText(
+                              title: level,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 4.h,
+                              color: AppColors.WHITE_COLOR),
+                        )),
+                  ]),
+                ),
+              ));
+        });
   }
 
   static Future<bool> showDialog(BuildContext context,
