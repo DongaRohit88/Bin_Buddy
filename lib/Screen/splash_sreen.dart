@@ -56,7 +56,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.WHITE_COLOR,
+        backgroundColor: AppColors.PRIMERY_COLOR,
         body: Center(child: Image.asset(AppAssets.BUDDY_LOGO, height: 30.h)));
   }
 }

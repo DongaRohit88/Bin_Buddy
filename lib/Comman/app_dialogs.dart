@@ -22,23 +22,23 @@ class AppDialog {
               backgroundColor: Colors.transparent,
               body: Center(
                 child: SizedBox(
-                  height: 57.h,
+                  height: 54.h,
                   child:
                       Stack(alignment: Alignment.topCenter, children: <Widget>[
                     Dialog(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12)),
                         child: Container(
-                          height: 50.h,
+                          height: 46.h,
                           decoration: BoxDecoration(
                               color: AppColors.LIGHT_YELLOW_COLOR,
                               borderRadius: BorderRadius.circular(3.w)),
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SizedBox(height: 2.h),
-                                Image.asset(AppAssets.RATING, scale: 1.3.h),
-                                SizedBox(height: 2.h),
+                                SizedBox(height: 1.h),
+                                // Image.asset(AppAssets.RATING, scale: 1.3.h),
+                                // SizedBox(height: 2.h),
                                 Container(
                                     height: 8.h,
                                     width: 55.w,
@@ -128,65 +128,43 @@ class AppDialog {
               return false; // Prevent dialog from being dismissed by back button
             },
             child: Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
-              child: SizedBox(
-                height: 40.h,
-                child: Column(children: [
-                  SizedBox(height: 2.h),
-                  // Align(
-                  //   alignment: Alignment.topRight,
-                  //   child: Padding(
-                  //     padding: EdgeInsets.only(right: 3.w),
-                  //     child: GestureDetector(
-                  //       onTap: () {
-                  //         Navigator.pop(context, false);
-                  //       },
-                  //       child: Icon(
-                  //         Icons.close,
-                  //         color: closeColor,
-                  //         size: 3.h,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: 2.h,
-                  // ),
-                  appText(
-                      title: title,
-                      fontSize: 4.h,
-                      color: titleColor,
-                      fontWeight: FontWeight.w700),
-                  SizedBox(height: 2.h),
-                  Image.asset(image, scale: scale ?? 0.5.h),
-                  SizedBox(height: 2.h),
-                  appText(
-                    title: 'This is a Custom\n'
-                        'Textview',
-                    maxLines: 2,
-                    color: AppColors.GREY_COLOR,
-                    textAlign: TextAlign.center,
-                    textOverflow: TextOverflow.ellipsis,
-                  ),
-                  SizedBox(height: 2.h),
-                  appButton(
-                    width: 50.w,
-                    onTap: () {
-                      playSound();
-                      Navigator.pop(context, true);
-                    },
-                    color: buttonColor,
-                    child: Center(
-                      child: appText(
-                          title: 'Ok',
-                          color: AppColors.WHITE_COLOR,
-                          maxLines: 2),
-                    ),
-                  ),
-                ]),
-              ),
-            ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
+                child: SizedBox(
+                  child: Column(mainAxisSize: MainAxisSize.min, children: [
+                    SizedBox(height: 2.h),
+                    appText(
+                        title: title,
+                        fontSize: 4.h,
+                        color: titleColor,
+                        fontWeight: FontWeight.w700),
+                    SizedBox(height: 2.h),
+                    Image.asset(image, scale: scale ?? 0.5.h),
+                    SizedBox(height: 2.h),
+                    // appText(
+                    //   title: 'This is a Custom\n'
+                    //       'Textview',
+                    //   maxLines: 2,
+                    //   color: AppColors.GREY_COLOR,
+                    //   textAlign: TextAlign.center,
+                    //   textOverflow: TextOverflow.ellipsis,
+                    // ),
+                    // SizedBox(height: 2.h),
+                    appButton(
+                        width: 50.w,
+                        onTap: () {
+                          playSound();
+                          Navigator.pop(context, true);
+                        },
+                        color: buttonColor,
+                        child: Center(
+                            child: appText(
+                                title: 'Ok',
+                                color: AppColors.WHITE_COLOR,
+                                maxLines: 2))),
+                    SizedBox(height: 2.h),
+                  ]),
+                )),
           );
         });
   }

@@ -92,10 +92,7 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
       sharedPreferences.setInt('level', Constants.level!);
       playSound();
       Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const WinScreen(),
-          ));
+          context, MaterialPageRoute(builder: (context) => const WinScreen()));
     }
   }
 
@@ -107,88 +104,62 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
           child: SafeArea(
         child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            SizedBox(
-              height: 7.h,
-            ),
+            SizedBox(height: 7.h),
             Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: EdgeInsets.only(right: 6.w),
-                child: GestureDetector(
-                  onTap: () {
-                    playSound();
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    height: 10.w,
-                    width: 10.w,
-                    decoration: BoxDecoration(
-                      color: AppColors.CIRCLE_COLOR,
-                      borderRadius: BorderRadius.circular(10.w),
-                    ),
-                    child: Icon(
-                      Icons.close,
-                      color: AppColors.WHITE_COLOR,
-                      size: 3.h,
-                    ),
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: EdgeInsets.only(right: 6.w),
+                  child: GestureDetector(
+                    onTap: () {
+                      playSound();
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                        height: 10.w,
+                        width: 10.w,
+                        decoration: BoxDecoration(
+                            color: AppColors.CIRCLE_COLOR,
+                            borderRadius: BorderRadius.circular(10.w)),
+                        child: Icon(Icons.close,
+                            color: AppColors.WHITE_COLOR, size: 3.h)),
                   ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 5.h,
-            ),
+                )),
+            SizedBox(height: 5.h),
             appText(
                 title: Constants.ScanResult,
                 color: AppColors.WHITE_COLOR,
                 fontWeight: FontWeight.w700,
                 fontSize: 4.5.h),
-            SizedBox(
-              height: 10.h,
-            ),
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                Image.asset(AppAssets.LINE),
-                Draggable<String>(
+            SizedBox(height: 10.h),
+            Stack(alignment: Alignment.center, children: [
+              Image.asset(AppAssets.LINE),
+              Draggable<String>(
                   data: widget.title,
                   child: Container(
                     height: 55.w,
                     width: 55.w,
                     decoration: BoxDecoration(
-                      color: AppColors.WHITE_COLOR,
-                      border:
-                          Border.all(color: AppColors.FONT_COLOR, width: 0.5.w),
-                      borderRadius: BorderRadius.circular(55.w),
-                    ),
+                        color: AppColors.WHITE_COLOR,
+                        border: Border.all(
+                            color: AppColors.FONT_COLOR, width: 0.5.w),
+                        borderRadius: BorderRadius.circular(55.w)),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(55.w),
-                      child: Image.file(
-                        File(widget.imagePath),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                        borderRadius: BorderRadius.circular(55.w),
+                        child: Image.file(File(widget.imagePath),
+                            fit: BoxFit.cover)),
                   ),
                   feedback: Container(
                     width: 55.w,
                     height: 55.w,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(55.w),
-                    ),
+                        borderRadius: BorderRadius.circular(55.w)),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(55.w),
-                      child: Image.file(
-                        File(widget.imagePath),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 3.h,
-            ),
+                        borderRadius: BorderRadius.circular(55.w),
+                        child: Image.file(File(widget.imagePath),
+                            fit: BoxFit.cover)),
+                  )),
+            ]),
+            SizedBox(height: 3.h),
             widget.title != null
                 ? appText(
                     title: widget.title,
@@ -196,121 +167,104 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
                     fontWeight: FontWeight.w700,
                     fontSize: 3.h)
                 : const SizedBox(),
-            SizedBox(
-              height: 8.h,
-            ),
+            SizedBox(height: 8.h),
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-              DragTarget<String>(
-                builder: (BuildContext context, List<String?> candidateData,
-                    List<dynamic> rejectedData) {
-                  return option(
-                      visible: compost,
-                      image: AppAssets.COMPOST,
-                      title: Constants.compost,
-                      isHovered: _hoveredOption == Constants.compost);
-                },
-                onWillAccept: (data) {
-                  setState(() {
-                    rubbish = false;
-                    recycling = false;
-                    _hoveredOption =
-                        Constants.compost; // Update the hovered option
-                  });
-                  print("DATA : $data");
+              DragTarget<String>(builder: (BuildContext context,
+                  List<String?> candidateData, List<dynamic> rejectedData) {
+                return option(
+                    visible: compost,
+                    image: AppAssets.COMPOST,
+                    title: Constants.compost,
+                    isHovered: _hoveredOption == Constants.compost);
+              }, onWillAccept: (data) {
+                setState(() {
+                  rubbish = false;
+                  recycling = false;
+                  _hoveredOption =
+                      Constants.compost; // Update the hovered option
+                });
+                print("DATA : $data");
 
-                  return true;
-                },
-                onLeave: (data) {
-                  setState(() {
-                    rubbish = true;
-                    recycling = true;
-                    _hoveredOption =
-                        null; // Reset hovered option when dragging leaves
-                  });
-                },
-                onAccept: (data) {
-                  setState(() {
-                    rubbish = true;
-                    recycling = true;
-                    _hoveredOption = null;
-                    _draggedImagePath = data;
-                  });
-                  data == data ? showWinDailog() : showLoseDialog();
-                },
-              ),
-              DragTarget<String>(
-                builder: (BuildContext context, List<String?> candidateData,
-                    List<dynamic> rejectedData) {
-                  return option(
-                      visible: rubbish,
-                      image: AppAssets.RUBBISH,
-                      title: Constants.rubbish,
-                      isHovered: _hoveredOption == Constants.rubbish);
-                },
-                onWillAccept: (data) {
-                  setState(() {
-                    compost = false;
-                    recycling = false;
-                    _hoveredOption =
-                        Constants.rubbish; // Update the hovered option
-                  });
-                  return true;
-                },
-                onLeave: (data) {
-                  setState(() {
-                    compost = true;
-                    recycling = true;
-                    _hoveredOption =
-                        null; // Reset hovered option when dragging leaves
-                  });
-                },
-                onAccept: (data) {
-                  setState(() {
-                    compost = true;
-                    recycling = true;
-                    _hoveredOption = null;
-                    _draggedImagePath = data;
-                  });
-                  data == data ? showWinDailog() : showLoseDialog();
-                },
-              ),
-              DragTarget<String>(
-                builder: (BuildContext context, List<String?> candidateData,
-                    List<dynamic> rejectedData) {
-                  return option(
-                      visible: recycling,
-                      image: AppAssets.RECYCLING,
-                      title: Constants.recycling,
-                      isHovered: _hoveredOption == Constants.recycling);
-                },
-                onWillAccept: (data) {
-                  setState(() {
-                    rubbish = false;
-                    compost = false;
-                    _hoveredOption =
-                        Constants.recycling; // Update the hovered option
-                  });
-                  // Return true if the dragged data (image path) is acceptable by this target
-                  return true;
-                },
-                onLeave: (data) {
-                  setState(() {
-                    rubbish = true;
-                    compost = true;
-                    _hoveredOption =
-                        null; // Reset hovered option when dragging leaves
-                  });
-                },
-                onAccept: (data) {
-                  setState(() {
-                    rubbish = true;
-                    compost = true;
-                    _hoveredOption = null;
-                    _draggedImagePath = data;
-                  });
-                  data == data ? showWinDailog() : showLoseDialog();
-                },
-              ),
+                return true;
+              }, onLeave: (data) {
+                setState(() {
+                  rubbish = true;
+                  recycling = true;
+                  _hoveredOption =
+                      null; // Reset hovered option when dragging leaves
+                });
+              }, onAccept: (data) {
+                setState(() {
+                  rubbish = true;
+                  recycling = true;
+                  _hoveredOption = null;
+                  _draggedImagePath = data;
+                });
+                data == data ? showWinDailog() : showLoseDialog();
+              }),
+              DragTarget<String>(builder: (BuildContext context,
+                  List<String?> candidateData, List<dynamic> rejectedData) {
+                return option(
+                    visible: rubbish,
+                    image: AppAssets.RUBBISH,
+                    title: Constants.rubbish,
+                    isHovered: _hoveredOption == Constants.rubbish);
+              }, onWillAccept: (data) {
+                setState(() {
+                  compost = false;
+                  recycling = false;
+                  _hoveredOption =
+                      Constants.rubbish; // Update the hovered option
+                });
+                return true;
+              }, onLeave: (data) {
+                setState(() {
+                  compost = true;
+                  recycling = true;
+                  _hoveredOption =
+                      null; // Reset hovered option when dragging leaves
+                });
+              }, onAccept: (data) {
+                setState(() {
+                  compost = true;
+                  recycling = true;
+                  _hoveredOption = null;
+                  _draggedImagePath = data;
+                });
+                data == data ? showWinDailog() : showLoseDialog();
+              }),
+              DragTarget<String>(builder: (BuildContext context,
+                  List<String?> candidateData, List<dynamic> rejectedData) {
+                return option(
+                    visible: recycling,
+                    image: AppAssets.RECYCLING,
+                    title: Constants.recycling,
+                    isHovered: _hoveredOption == Constants.recycling);
+              }, onWillAccept: (data) {
+                setState(() {
+                  rubbish = false;
+                  compost = false;
+                  _hoveredOption =
+                      Constants.recycling; // Update the hovered option
+                });
+                // Return true if the dragged data (image path) is acceptable by this target
+                return true;
+              }, onLeave: (data) {
+                setState(() {
+                  rubbish = true;
+                  compost = true;
+                  _hoveredOption =
+                      null; // Reset hovered option when dragging leaves
+                });
+              }, onAccept: (data) {
+                setState(() {
+                  rubbish = true;
+                  compost = true;
+                  _hoveredOption = null;
+                  _draggedImagePath = data;
+                });
+                data == data ? showWinDailog() : showLoseDialog();
+              }),
             ]),
           ]),
         ),
