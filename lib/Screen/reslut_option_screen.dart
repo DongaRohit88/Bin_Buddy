@@ -8,18 +8,21 @@ import 'package:bin_buddy/Comman/app_text.dart';
 import 'package:bin_buddy/Screen/win_screen.dart';
 import 'package:bin_buddy/constants/app_assets.dart';
 import 'package:bin_buddy/constants/app_colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 import '../constants/constants.dart';
 
+//! image scan Result page
 class ResultOptionScreen extends StatefulWidget {
+  final String? type;
   final String imagePath;
   final String title;
 
   const ResultOptionScreen(
-      {Key? key, required this.imagePath, required this.title})
+      {Key? key, required this.imagePath, required this.title, this.type})
       : super(key: key);
 
   @override
@@ -40,19 +43,22 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
     super.initState();
   }
 
+//! App total score and level get
   getTotalScore() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Constants.score = sharedPreferences.getInt('total_score');
     Constants.level = sharedPreferences.getInt('level');
   }
 
+//! scan result correct to show dialog open
   showWinDailog() async {
+    playSound("Audio2.mp3");
     bool isConfrimed = await AppDialog.showDialog(
       context,
       closeColor: AppColors.YELLOW_COLOR,
       buttonColor: AppColors.YELLOW_COLOR,
       titleColor: AppColors.YELLOW_COLOR,
-      title: 'You Win!',
+      title: 'Correct!',
       image: AppAssets.TROPHY,
     );
 
@@ -65,19 +71,21 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
           await SharedPreferences.getInstance();
       sharedPreferences.setInt('total_score', Constants.score!);
       sharedPreferences.setInt('level', Constants.level!);
-      playSound();
+
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const WinScreen()));
     }
   }
+//! scan result In Correct to show dialog open
 
   showLoseDialog() async {
+    playSound("Audio3.mp3");
     bool isConfrimed = await AppDialog.showDialog(
       context,
       closeColor: AppColors.RED_COLOR,
       buttonColor: AppColors.RED_COLOR,
       titleColor: AppColors.RED_COLOR,
-      title: 'You Lose!',
+      title: 'In Correct!',
       scale: 0.7.h,
       image: AppAssets.CANCLE,
     );
@@ -90,7 +98,6 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
           await SharedPreferences.getInstance();
       sharedPreferences.setInt('total_score', Constants.score!);
       sharedPreferences.setInt('level', Constants.level!);
-      playSound();
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const WinScreen()));
     }
@@ -104,15 +111,16 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
           child: SafeArea(
         child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            SizedBox(height: 7.h),
+            SizedBox(height: 4.h),
+            //! Back Button
             Align(
                 alignment: Alignment.topRight,
                 child: Padding(
                   padding: EdgeInsets.only(right: 6.w),
                   child: GestureDetector(
                     onTap: () {
-                      playSound();
-                      Navigator.pop(context);
+                      _showAlertDialog(context);
+                      playSound("Audio2.mp3");
                     },
                     child: Container(
                         height: 10.w,
@@ -133,30 +141,44 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
             SizedBox(height: 10.h),
             Stack(alignment: Alignment.center, children: [
               Image.asset(AppAssets.LINE),
+              //! Draggable image
               Draggable<String>(
                   data: widget.title,
                   child: Container(
                     height: 55.w,
                     width: 55.w,
                     decoration: BoxDecoration(
-                        color: AppColors.WHITE_COLOR,
+                        // color: AppColors.WHITE_COLOR,
                         border: Border.all(
                             color: AppColors.FONT_COLOR, width: 0.5.w),
                         borderRadius: BorderRadius.circular(55.w)),
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(55.w),
-                        child: Image.file(File(widget.imagePath),
-                            fit: BoxFit.cover)),
+                        child: widget.type != "1"
+                            ? Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Image.file(File(widget.imagePath),
+                                    fit: BoxFit.fill),
+                              )
+                            : Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Image.network(widget.imagePath,
+                                    fit: BoxFit.fill),
+                              )),
                   ),
+                  //! Scroll image
                   feedback: Container(
-                    width: 55.w,
-                    height: 55.w,
+                    width: 38.w,
+                    height: 38.w,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(55.w)),
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(55.w),
-                        child: Image.file(File(widget.imagePath),
-                            fit: BoxFit.cover)),
+                        child: widget.type != "1"
+                            ? Image.file(File(widget.imagePath),
+                                fit: BoxFit.cover)
+                            : Image.network(widget.imagePath,
+                                fit: BoxFit.cover)),
                   )),
             ]),
             SizedBox(height: 3.h),
@@ -167,15 +189,19 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
                     fontWeight: FontWeight.w700,
                     fontSize: 3.h)
                 : const SizedBox(),
+
             SizedBox(height: 8.h),
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
               DragTarget<String>(builder: (BuildContext context,
                   List<String?> candidateData, List<dynamic> rejectedData) {
                 return option(
-                    visible: compost,
+                    visible: true,
                     image: AppAssets.COMPOST,
-                    title: Constants.compost,
-                    isHovered: _hoveredOption == Constants.compost);
+                    title: Constants.rubbish,
+                    isHovered: false
+
+                    // _hoveredOption == Constants.compost
+                    );
               }, onWillAccept: (data) {
                 setState(() {
                   rubbish = false;
@@ -194,6 +220,7 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
                       null; // Reset hovered option when dragging leaves
                 });
               }, onAccept: (data) {
+                print("------------->>>data print :3:  $data");
                 setState(() {
                   rubbish = true;
                   recycling = true;
@@ -205,10 +232,12 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
               DragTarget<String>(builder: (BuildContext context,
                   List<String?> candidateData, List<dynamic> rejectedData) {
                 return option(
-                    visible: rubbish,
+                    visible: true,
                     image: AppAssets.RUBBISH,
-                    title: Constants.rubbish,
-                    isHovered: _hoveredOption == Constants.rubbish);
+                    title: Constants.compost,
+                    isHovered: false
+                    //_hoveredOption == Constants.rubbish
+                    );
               }, onWillAccept: (data) {
                 setState(() {
                   compost = false;
@@ -236,10 +265,12 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
               DragTarget<String>(builder: (BuildContext context,
                   List<String?> candidateData, List<dynamic> rejectedData) {
                 return option(
-                    visible: recycling,
+                    visible: true,
                     image: AppAssets.RECYCLING,
                     title: Constants.recycling,
-                    isHovered: _hoveredOption == Constants.recycling);
+                    isHovered: false
+                    //  _hoveredOption == Constants.recycling
+                    );
               }, onWillAccept: (data) {
                 setState(() {
                   rubbish = false;
@@ -269,6 +300,32 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
           ]),
         ),
       )),
+    );
+  }
+
+  void _showAlertDialog(BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+          title: const Text('Bin Buddy'),
+          content: const Text(
+            'Are you sure you want to close level?',
+            style: TextStyle(fontSize: 16, letterSpacing: 0.5),
+          ),
+          actions: <CupertinoDialogAction>[
+            CupertinoDialogAction(
+                isDefaultAction: true,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('No')),
+            CupertinoDialogAction(
+                isDestructiveAction: true,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Yes')),
+          ]),
     );
   }
 }

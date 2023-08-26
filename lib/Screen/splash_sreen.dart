@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:bin_buddy/Screen/HomePage.dart';
 import 'package:bin_buddy/constants/app_assets.dart';
 import 'package:bin_buddy/constants/app_colors.dart';
@@ -25,28 +26,19 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     getTotalScore();
-    Future.delayed(const Duration(seconds: 3), () {
-      _navigateToHomeScreen();
+    Future.delayed(const Duration(seconds: 3), () async {
+      await fillScore();
     });
   }
 
-  Future<void> _navigateToHomeScreen() async {
-    // Fill the score in SharedPreferences
-    await fillScore();
-
-    // Navigate to the HomeScreen and replace the current page
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => HomePage(cameras: cameras!)));
-  }
-
-// FillScore
+//! local data save level and total Score
   Future<void> fillScore() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setInt('total_score', Constants.score ?? 0);
     prefs.setInt('level', Constants.level ?? 0);
   }
 
-// Get Total Score SharedPreferences
+//! Get Total Score SharedPreferences
   getTotalScore() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     Constants.score = prefs.getInt('total_score') ?? 0;
@@ -57,6 +49,16 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.PRIMERY_COLOR,
-        body: Center(child: Image.asset(AppAssets.BUDDY_LOGO, height: 30.h)));
+        body: Center(
+          child: AnimatedSplashScreen(
+              duration: 3500,
+              splash: AppAssets.BUDDY_LOGO,
+              splashIconSize: 28.h,
+              nextScreen: HomePage(cameras: cameras!),
+              centered: true,
+              splashTransition: SplashTransition.scaleTransition,
+              backgroundColor: AppColors.PRIMERY_COLOR),
+          // Image.asset(AppAssets.BUDDY_LOGO, height: 30.h)
+        ));
   }
 }

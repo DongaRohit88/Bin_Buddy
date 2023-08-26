@@ -29,6 +29,12 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
             title: Constants.appName,
             theme: ThemeData(primarySwatch: Colors.blue),
+            // .copyWith(
+            //   pageTransitionsTheme: const PageTransitionsTheme(
+            //       builders: <TargetPlatform, PageTransitionsBuilder>{
+            //         TargetPlatform.android: ZoomPageTransitionsBuilder()
+            //       }),
+            // ),
             debugShowCheckedModeBanner: false,
             home: SplashPage(cameras: cameras!));
       },

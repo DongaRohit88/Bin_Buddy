@@ -39,7 +39,13 @@ dependencies:
   shared_preferences: ^2.2.0
   camera: ^0.10.5+3
   flutter_tflite:
-  audioplayers:
+  audioplayers: ^0.19.1
+  animated_splash_screen: ^1.3.0
+  animations: ^2.0.7
+  phlox_animations: ^2.1.1
+  flutter_animate:
+  button_animations: ^2.0.0+3
+  page_transition: ^2.0.9
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +75,11 @@ flutter:
     - assets/WaterDrop1.mp3
     - assets/images/
     - assets/lottie/
+    - assets/Audio1.mp3
+    - assets/Audio2.mp3
+    - assets/Audio3.mp3
+    - assets/Audio4.mp3
+    - assets/Audio5.mp3
     - assets/ssd_mobilenet.tflite
     - assets/ssd_mobilenet.txt
 

@@ -3,9 +3,11 @@
 import 'package:bin_buddy/Comman/app_dialogs.dart';
 import 'package:bin_buddy/constants/app_colors.dart';
 import 'package:bin_buddy/constants/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../constants/app_assets.dart';
 import '../main.dart';
 import 'Scan_Screen.dart';
 
@@ -20,6 +22,8 @@ class _WinScreenState extends State<WinScreen> {
   @override
   void initState() {
     getTotalScore();
+    playSound("Audio5.mp3");
+
     _initializeDialog();
     super.initState();
   }
@@ -35,8 +39,8 @@ class _WinScreenState extends State<WinScreen> {
   _initializeDialog() {
     Future.delayed(Duration.zero, () async {
       await AppDialog.showScoreDialog(context,
-          level: 'Level ${Constants.level.toString()}',
-          score: 'Score:${Constants.score.toString()}');
+          level: 'Level : ${Constants.level.toString()}',
+          score: 'Score : ${Constants.score.toString()}');
     });
   }
 
@@ -45,7 +49,7 @@ class _WinScreenState extends State<WinScreen> {
     return WillPopScope(
         onWillPop: () async {
           return await Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => ScanPage(cameras!)));
+              CupertinoPageRoute(builder: (context) => ScanPage(cameras!)));
         },
         child: const Scaffold(backgroundColor: AppColors.PRIMERY_COLOR));
   }
