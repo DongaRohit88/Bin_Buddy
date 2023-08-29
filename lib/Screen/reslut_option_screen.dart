@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
+import '../Comman/models.dart';
 import '../constants/constants.dart';
 
 //! image scan Result page
@@ -227,7 +228,7 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
                   _hoveredOption = null;
                   _draggedImagePath = data;
                 });
-                data == data ? showWinDailog() : showLoseDialog();
+                wastList.contains(data) ? showWinDailog() : showLoseDialog();
               }),
               DragTarget<String>(builder: (BuildContext context,
                   List<String?> candidateData, List<dynamic> rejectedData) {
@@ -260,7 +261,7 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
                   _hoveredOption = null;
                   _draggedImagePath = data;
                 });
-                data == data ? showWinDailog() : showLoseDialog();
+                organicList.contains(data) ? showWinDailog() : showLoseDialog();
               }),
               DragTarget<String>(builder: (BuildContext context,
                   List<String?> candidateData, List<dynamic> rejectedData) {
@@ -294,7 +295,9 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
                   _hoveredOption = null;
                   _draggedImagePath = data;
                 });
-                data == data ? showWinDailog() : showLoseDialog();
+                recyclablesList.contains(data)
+                    ? showWinDailog()
+                    : showLoseDialog();
               }),
             ]),
           ]),

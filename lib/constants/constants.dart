@@ -69,8 +69,9 @@ void playSound(String soundTitel) async {
   AudioPlayer audioPlayer = AudioPlayer();
   AudioCache audioCache = AudioCache(fixedPlayer: audioPlayer);
   // AudioPlayer audioPlayerInstance = await audioCache.play(soundTitel);
-  audioPlayer.stop();
   if (isplaying) {
+    audioPlayer.stop();
+
     print("Play Sound :-----------: ${soundTitel}");
 
     await audioCache.play(soundTitel);
