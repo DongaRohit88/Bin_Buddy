@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously, unnecessary_null_comparison, prefer_if_null_operators, unnecessary_new, library_private_types_in_public_api, avoid_print, sort_child_properties_last
 
+import 'package:bin_buddy/tflite.dart';
 import 'package:button_animations/button_animations.dart';
 import 'package:button_animations/constants.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,7 +15,6 @@ import 'package:bin_buddy/Screen/scan_result_screen.dart';
 import 'package:bin_buddy/constants/app_assets.dart';
 import 'package:bin_buddy/constants/app_colors.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:phlox_animations/phlox_animations.dart';
 import 'package:shared_preferences/shared_preferences.dart';

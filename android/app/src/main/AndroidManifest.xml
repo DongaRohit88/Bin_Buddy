@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.binbuddy.app">
+    package="com.binhero.app">
      <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="Bin Buddy"
+        android:label="Bin Hero"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

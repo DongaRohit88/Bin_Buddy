@@ -1,4 +1,4 @@
-package com.binbuddy.app
+package com.binhero.app
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -7,9 +7,9 @@ import '../Screen/HomePage.dart';
 
 //! App Use Text String
 class Constants {
-  static const String appName = 'Bin Buddy';
+  static const String appName = 'Bi';
 
-  static const String packageName = 'com.binbuddy.app';
+  static const String packageName = 'com.binhero.app';
 
   static const String ScanResult = 'Scan result';
 

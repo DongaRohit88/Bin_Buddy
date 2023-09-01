@@ -203,7 +203,7 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
     showCupertinoModalPopup<void>(
       context: context,
       builder: (BuildContext context) => CupertinoAlertDialog(
-          title: const Text('Bin Buddy'),
+          title: const Text('Bin Hero'),
           content: const Text(
             'Are you sure you want to close level?',
             style: TextStyle(fontSize: 16, letterSpacing: 0.5),

@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_generic_function_type_aliases, library_private_types_in_public_api, unnecessary_null_comparison, avoid_print, prefer_is_empty, unnecessary_new
 
+import 'package:bin_buddy/tflite.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:flutter_tflite/flutter_tflite.dart';
 import 'dart:math' as math;
 
 import 'models.dart';

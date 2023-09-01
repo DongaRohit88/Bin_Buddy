@@ -8,16 +8,11 @@ import 'package:bin_buddy/constants/app_colors.dart';
 import 'package:button_animations/button_animations.dart';
 import 'package:button_animations/constants.dart';
 import 'package:camera/camera.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:phlox_animations/phlox_animations.dart';
 import 'package:sizer/sizer.dart';
 
-import '../Comman/app_button.dart';
 import '../Comman/app_text.dart';
 import '../constants/app_assets.dart';
 import '../constants/constants.dart';
@@ -88,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                         color: AppColors.WHITE_COLOR,
                         size: 32))
               ]),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.13),
               Container(
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(32)),
