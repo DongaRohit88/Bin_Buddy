@@ -96,6 +96,7 @@ class _ScanPageState extends State<ScanPage> {
           CameraController(widget.cameras[0], ResolutionPreset.medium);
       await cameraController.initialize();
       final XFile imageFile = await cameraController.takePicture();
+      print("---------------_recognitions :: $_recognitions");
       Navigator.push(
         context,
         PageTransition(
