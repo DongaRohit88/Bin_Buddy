@@ -52,7 +52,7 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
   }
 
 //! scan result correct to show dialog open
-  showWinDailog() async {
+  showWinDailog(typ) async {
     playSound("Audio2.mp3");
     bool isConfrimed = await AppDialog.showDialog(
       context,
@@ -73,8 +73,8 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
       sharedPreferences.setInt('total_score', Constants.score!);
       sharedPreferences.setInt('level', Constants.level!);
 
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const WinScreen()));
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => WinScreen(typ: typ)));
     }
   }
 //! scan result In Correct to show dialog open
@@ -149,23 +149,16 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
                     height: 55.w,
                     width: 55.w,
                     decoration: BoxDecoration(
-                        // color: AppColors.WHITE_COLOR,
                         border: Border.all(
                             color: AppColors.FONT_COLOR, width: 0.5.w),
                         borderRadius: BorderRadius.circular(55.w)),
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(55.w),
                         child: widget.type != "1"
-                            ? Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Image.file(File(widget.imagePath),
-                                    fit: BoxFit.fill),
-                              )
-                            : Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Image.network(widget.imagePath,
-                                    fit: BoxFit.fill),
-                              )),
+                            ? Image.file(File(widget.imagePath),
+                                fit: BoxFit.cover)
+                            : Image.network(widget.imagePath,
+                                fit: BoxFit.cover)),
                   ),
                   //! Scroll image
                   feedback: Container(
@@ -200,7 +193,6 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
                     image: AppAssets.COMPOST,
                     title: Constants.rubbish,
                     isHovered: false
-
                     // _hoveredOption == Constants.compost
                     );
               }, onWillAccept: (data) {
@@ -228,7 +220,7 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
                   _hoveredOption = null;
                   _draggedImagePath = data;
                 });
-                wastList.contains(data) ? showWinDailog() : showLoseDialog();
+                wastList.contains(data) ? showWinDailog("1") : showLoseDialog();
               }),
               DragTarget<String>(builder: (BuildContext context,
                   List<String?> candidateData, List<dynamic> rejectedData) {
@@ -255,13 +247,16 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
                       null; // Reset hovered option when dragging leaves
                 });
               }, onAccept: (data) {
+                print("------- Data ::: ${data}");
                 setState(() {
                   compost = true;
                   recycling = true;
                   _hoveredOption = null;
                   _draggedImagePath = data;
                 });
-                organicList.contains(data) ? showWinDailog() : showLoseDialog();
+                organicList.contains(data)
+                    ? showWinDailog("2")
+                    : showLoseDialog();
               }),
               DragTarget<String>(builder: (BuildContext context,
                   List<String?> candidateData, List<dynamic> rejectedData) {
@@ -296,7 +291,7 @@ class _ResultOptionScreenState extends State<ResultOptionScreen> {
                   _draggedImagePath = data;
                 });
                 recyclablesList.contains(data)
-                    ? showWinDailog()
+                    ? showWinDailog("3")
                     : showLoseDialog();
               }),
             ]),

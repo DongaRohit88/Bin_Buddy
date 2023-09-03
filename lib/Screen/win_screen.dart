@@ -12,7 +12,8 @@ import '../main.dart';
 import 'Scan_Screen.dart';
 
 class WinScreen extends StatefulWidget {
-  const WinScreen({Key? key}) : super(key: key);
+  final String? typ;
+  const WinScreen({Key? key, this.typ}) : super(key: key);
 
   @override
   State<WinScreen> createState() => _WinScreenState();
@@ -37,10 +38,12 @@ class _WinScreenState extends State<WinScreen> {
 
 //! Level Score Dialog
   _initializeDialog() {
+    print("----typ00 ${widget.typ}");
     Future.delayed(Duration.zero, () async {
       await AppDialog.showScoreDialog(context,
           level: 'Level : ${Constants.level.toString()}',
-          score: 'Score : ${Constants.score.toString()}');
+          score: 'Score : ${Constants.score.toString()}',
+          typ: widget.typ);
     });
   }
 

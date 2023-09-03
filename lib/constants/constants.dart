@@ -65,17 +65,17 @@ List dynamicImage = [
   },
 ];
 // Play Sound Widget on off
+AudioPlayer audioPlayer = AudioPlayer();
 void playSound(String soundTitel) async {
-  AudioPlayer audioPlayer = AudioPlayer();
   AudioCache audioCache = AudioCache(fixedPlayer: audioPlayer);
-  // AudioPlayer audioPlayerInstance = await audioCache.play(soundTitel);
-  if (isplaying) {
-    audioPlayer.stop();
+  // Stream<Duration> srt1 = audioPlayer.onAudioPositionChanged;
+  // Stream<PlayerState> srt2 = audioPlayer.onPlayerStateChanged;
 
-    print("Play Sound :-----------: ${soundTitel}");
-
+  if (audioPlayer.state.name != "PLAYING") {
+    isplaying = true;
     await audioCache.play(soundTitel);
-
-    // await audioCache.play("$soundTitel");
+  } else {
+    isplaying = false;
+    await audioPlayer.stop();
   }
 }

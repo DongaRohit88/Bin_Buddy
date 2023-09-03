@@ -8,15 +8,13 @@ import 'models.dart';
 // scan view detected Class
 class BndBox extends StatelessWidget {
   final List<dynamic> results;
-  final int previewH;
-  final int previewW;
-  final double screenH;
-  final double screenW;
+  // final int previewH;
+  // final int previewW;
+  // final double screenH;
+  // final double screenW;
   final String model;
 
-  const BndBox(this.results, this.previewH, this.previewW, this.screenH,
-      this.screenW, this.model,
-      {super.key});
+  const BndBox(this.results, this.model, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,42 +26,42 @@ class BndBox extends StatelessWidget {
         var _h = re["rect"]["h"];
         var scaleW, scaleH, x, y, w, h;
 
-        if (screenH / screenW > previewH / previewW) {
-          scaleW = screenH / previewH * previewW;
-          scaleH = screenH;
-          var difW = (scaleW - screenW) / scaleW;
-          x = (_x - difW / 2) * scaleW;
-          w = _w * scaleW;
-          if (_x < difW / 2) w -= (difW / 2 - _x) * scaleW;
-          y = _y * scaleH;
-          h = _h * scaleH;
-        } else {
-          scaleH = screenW / previewW * previewH;
-          scaleW = screenW;
-          var difH = (scaleH - screenH) / scaleH;
-          x = _x * scaleW;
-          w = _w * scaleW;
-          y = (_y - difH / 2) * scaleH;
-          h = _h * scaleH;
-          if (_y < difH / 2) h -= (difH / 2 - _y) * scaleH;
-        }
+        // if (screenH / screenW > previewH / previewW) {
+        //   scaleW = screenH / previewH * previewW;
+        //   scaleH = screenH;
+        //   var difW = (scaleW - screenW) / scaleW;
+        //   x = (_x - difW / 2) * scaleW;
+        //   w = _w * scaleW;
+        //   if (_x < difW / 2) w -= (difW / 2 - _x) * scaleW;
+        //   y = _y * scaleH;
+        //   h = _h * scaleH;
+        // } else {
+        //   scaleH = screenW / previewW * previewH;
+        //   scaleW = screenW;
+        //   var difH = (scaleH - screenH) / scaleH;
+        //   x = _x * scaleW;
+        //   w = _w * scaleW;
+        //   y = (_y - difH / 2) * scaleH;
+        //   h = _h * scaleH;
+        //   if (_y < difH / 2) h -= (difH / 2 - _y) * scaleH;
+        // }
 
         return Positioned(
-          left: math.max(0, x),
-          top: math.max(0, y),
+          // left: math.max(0, x),
+          // top: math.max(0, y),
           width: w,
           height: h,
           child: Container(
-              padding: const EdgeInsets.only(top: 5.0, left: 5.0),
-              decoration: BoxDecoration(
-                  border:
-                      Border.all(color: AppColors.PRIMERY_COLOR, width: 3.0)),
-              child: Text(
-                  "${re["detectedClass"]} ${(re["confidenceInClass"] * 100).toStringAsFixed(0)}%",
-                  style: const TextStyle(
-                      color: AppColors.PRIMERY_COLOR,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold))),
+            padding: const EdgeInsets.only(top: 5.0, left: 5.0),
+            decoration: BoxDecoration(
+                border: Border.all(color: AppColors.PRIMERY_COLOR, width: 3.0)),
+            // child: Text(
+            //     "${re["detectedClass"]} ${(re["confidenceInClass"] * 100).toStringAsFixed(0)}%",
+            //     style: const TextStyle(
+            //         color: AppColors.PRIMERY_COLOR,
+            //         fontSize: 14.0,
+            //         fontWeight: FontWeight.bold))
+          ),
         );
       }).toList();
     }
@@ -75,8 +73,8 @@ class BndBox extends StatelessWidget {
         return Positioned(
             left: 10,
             top: offset,
-            width: screenW,
-            height: screenH,
+            // width: screenW,
+            // height: screenH,
             child: Text(
               "${re["label"]} ${(re["confidence"] * 100).toStringAsFixed(0)}%",
               style: const TextStyle(
@@ -95,19 +93,19 @@ class BndBox extends StatelessWidget {
           var _y = k["y"];
           var scaleW, scaleH, x, y;
 
-          if (screenH / screenW > previewH / previewW) {
-            scaleW = screenH / previewH * previewW;
-            scaleH = screenH;
-            var difW = (scaleW - screenW) / scaleW;
-            x = (_x - difW / 2) * scaleW;
-            y = _y * scaleH;
-          } else {
-            scaleH = screenW / previewW * previewH;
-            scaleW = screenW;
-            var difH = (scaleH - screenH) / scaleH;
-            x = _x * scaleW;
-            y = (_y - difH / 2) * scaleH;
-          }
+          // if (screenH / screenW > previewH / previewW) {
+          //   scaleW = screenH / previewH * previewW;
+          //   scaleH = screenH;
+          //   var difW = (scaleW - screenW) / scaleW;
+          //   x = (_x - difW / 2) * scaleW;
+          //   y = _y * scaleH;
+          // } else {
+          //   scaleH = screenW / previewW * previewH;
+          //   scaleW = screenW;
+          //   var difH = (scaleH - screenH) / scaleH;
+          //   x = _x * scaleW;
+          //   y = (_y - difH / 2) * scaleH;
+          // }
           return Positioned(
               left: x - 6,
               top: y - 6,

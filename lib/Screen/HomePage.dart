@@ -2,6 +2,7 @@
 
 import 'dart:math';
 
+import 'package:bin_buddy/Screen/reslut_option_screen.dart';
 import 'package:bin_buddy/Screen/scan_result_screen.dart';
 import 'package:bin_buddy/Screen/score.dart';
 import 'package:bin_buddy/constants/app_colors.dart';
@@ -74,6 +75,7 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () {
                       setState(() {
                         isplaying = !isplaying;
+                        playSound("Audio1.mp3");
                       });
                     },
                     icon: Icon(
@@ -113,11 +115,10 @@ class _HomePageState extends State<HomePage> {
 
                             playSound("Audio1.mp3");
                             Navigator.push(
-                              context,
-                              PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: ScanPage(widget.cameras)),
-                            );
+                                context,
+                                PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: ScanPage(widget.cameras)));
                           }),
                       AnimatedButton(
                           height: 06.h,
@@ -132,18 +133,28 @@ class _HomePageState extends State<HomePage> {
                             playSound("Audio1.mp3");
                             int randomNumber =
                                 random.nextInt(dynamicImage.length);
+
                             Navigator.push(
                               context,
                               PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: ScanResultScreen(
-                                      type: "1",
-                                      number: randomNumber,
-                                      imagePath: dynamicImage[randomNumber]
-                                          ["Image"],
-                                      recognitions: [
-                                        dynamicImage[randomNumber]
-                                      ])),
+                                type: PageTransitionType.rightToLeft,
+                                child: ResultOptionScreen(
+                                    type: "1",
+                                    imagePath: dynamicImage[randomNumber]
+                                        ["Image"],
+                                    title: dynamicImage[randomNumber]
+                                            ['detectedClass']
+                                        .toString()),
+
+                                // ScanResultScreen(
+                                //     type: "1",
+                                //     number: randomNumber,
+                                //     imagePath: dynamicImage[randomNumber]
+                                //         ["Image"],
+                                //     recognitions: [
+                                //   dynamicImage[randomNumber]
+                                // ])
+                              ),
                             );
                           }),
                     ]),

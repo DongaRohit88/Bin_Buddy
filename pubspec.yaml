@@ -45,6 +45,7 @@ dependencies:
   flutter_animate:
   button_animations: ^2.0.0+3
   page_transition: ^2.0.9
+  flutter_tflite: ^1.0.1
 
 dev_dependencies:
   flutter_test:

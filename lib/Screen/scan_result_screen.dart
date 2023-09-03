@@ -88,14 +88,14 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                     borderRadius: BorderRadius.circular(55.w),
                     child: widget.type != "1"
                         ? Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(1.0),
                             child: Image.file(File(widget.imagePath),
-                                fit: BoxFit.fill),
+                                fit: BoxFit.cover),
                           )
                         : Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(1.0),
                             child: Image.network(widget.imagePath,
-                                fit: BoxFit.fill),
+                                fit: BoxFit.cover),
                           ),
                   ),
                 ),

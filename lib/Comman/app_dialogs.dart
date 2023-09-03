@@ -12,7 +12,6 @@ import 'package:sizer/sizer.dart';
 import '../../constants/app_colors.dart';
 import '../Screen/HomePage.dart';
 import '../Screen/Scan_Screen.dart';
-import '../constants/constants.dart';
 
 List scoreLevelList = [];
 
@@ -20,7 +19,8 @@ class AppDialog {
   AppDialog._();
 
   static Future showScoreDialog(BuildContext context,
-      {String? score, String? message, String? level}) async {
+      {String? score, String? message, String? level, typ}) async {
+    print("----showCupertinoDialog : ${typ}");
     return await showCupertinoDialog(
         context: context,
         builder: (context) {
@@ -63,11 +63,17 @@ class AppDialog {
                                 Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      scoreOption(image: AppAssets.COMPOST),
+                                      scoreOption(
+                                          image: AppAssets.COMPOST,
+                                          isShow: typ == "1" ? true : false),
                                       SizedBox(width: 2.5.w),
-                                      scoreOption(image: AppAssets.RUBBISH),
+                                      scoreOption(
+                                          image: AppAssets.RUBBISH,
+                                          isShow: typ == "2" ? true : false),
                                       SizedBox(width: 2.5.w),
-                                      scoreOption(image: AppAssets.RECYCLING),
+                                      scoreOption(
+                                          image: AppAssets.RECYCLING,
+                                          isShow: typ == "3" ? true : false),
                                     ]),
                                 SizedBox(height: 3.h),
                                 //! Continue Button
