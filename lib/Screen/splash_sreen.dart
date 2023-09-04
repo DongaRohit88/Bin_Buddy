@@ -15,7 +15,7 @@ import '../main.dart';
 // Splash Screen view
 class SplashPage extends StatefulWidget {
   final List<CameraDescription> cameras;
-  const SplashPage({super.key, required this.cameras});
+  const SplashPage({required this.cameras});
 
   @override
   State<SplashPage> createState() => _SplashPageState();

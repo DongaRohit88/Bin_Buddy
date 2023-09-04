@@ -15,7 +15,7 @@ class Camera extends StatefulWidget {
   final Callback setRecognitions;
   final String model;
 
-  const Camera(this.cameras, this.model, this.setRecognitions, {super.key});
+  const Camera(this.cameras, this.model, this.setRecognitions);
 
   @override
   _CameraState createState() => _CameraState();

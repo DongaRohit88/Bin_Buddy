@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.binhero.app">
-     <uses-permission android:name="android.permission.INTERNET"/>
+     <!-- <uses-permission android:name="android.permission.INTERNET"/> -->
    <application
         android:label="Bin Hero"
         android:name="${applicationName}"

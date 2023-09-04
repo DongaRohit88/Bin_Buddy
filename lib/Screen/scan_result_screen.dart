@@ -22,8 +22,7 @@ class ScanResultScreen extends StatefulWidget {
   final String imagePath;
   final List recognitions;
   const ScanResultScreen(
-      {super.key,
-      required this.imagePath,
+      {required this.imagePath,
       required this.recognitions,
       this.number,
       this.type});

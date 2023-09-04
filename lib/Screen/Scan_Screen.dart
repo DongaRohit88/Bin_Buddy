@@ -31,7 +31,7 @@ import 'score.dart';
 class ScanPage extends StatefulWidget {
   final List<CameraDescription> cameras;
 
-  const ScanPage(this.cameras, {super.key});
+  const ScanPage(this.cameras);
 
   @override
   _ScanPageState createState() => _ScanPageState();
@@ -203,7 +203,7 @@ class _ScanPageState extends State<ScanPage> {
                       context,
                       PageTransition(
                           type: PageTransitionType.rightToLeft,
-                          child: const ScoreListPage()));
+                          child: ScoreListPage()));
                 }),
           ]),
         ),

@@ -8,8 +8,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 class ScoreListPage extends StatefulWidget {
-  const ScoreListPage({super.key});
-
   @override
   State<ScoreListPage> createState() => _ScoreListPageState();
 }

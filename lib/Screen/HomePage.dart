@@ -23,7 +23,7 @@ bool isplaying = true;
 
 class HomePage extends StatefulWidget {
   final List<CameraDescription> cameras;
-  const HomePage({super.key, required this.cameras});
+  const HomePage({required this.cameras});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
                         context,
                         PageTransition(
                             type: PageTransitionType.rightToLeft,
-                            child: const ScoreListPage()),
+                            child: ScoreListPage()),
                       );
                     },
                     icon: const Icon(Icons.settings_outlined,

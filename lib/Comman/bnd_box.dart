@@ -14,7 +14,7 @@ class BndBox extends StatelessWidget {
   // final double screenW;
   final String model;
 
-  const BndBox(this.results, this.model, {super.key});
+  const BndBox(this.results, this.model);
 
   @override
   Widget build(BuildContext context) {
