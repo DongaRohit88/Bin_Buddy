@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 // App Use Colors
 class AppColors {
-  static const Color PRIMERY_COLOR = Color(0xff4A6917);
+  //! App Primery Color
+  static const Color PRIMERY_COLOR = Color.fromARGB(255, 113, 161, 34);
 
   static const Color CIRCLE_COLOR = Color(0xFF62992B);
 

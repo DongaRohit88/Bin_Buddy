@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     setState(() {
+      playSound("Audio1.mp3");
       // timeDilation = 3.0;
       Future.delayed(const Duration(seconds: 0), () {
         setState(() {});

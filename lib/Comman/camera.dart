@@ -3,7 +3,6 @@
 import 'package:bin_buddy/tflite.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:flutter_tflite/flutter_tflite.dart';
 import 'dart:math' as math;
 
 import 'models.dart';

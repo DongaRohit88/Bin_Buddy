@@ -28,7 +28,17 @@ Widget scoreOption({required String image, bool isShow = false}) {
                     child: Icon(Icons.done,
                         color: AppColors.WHITE_COLOR, size: 2.5.h)),
               ))
-          : SizedBox(),
+          : Align(
+              alignment: Alignment.bottomRight,
+              child: appButton(
+                width: 6.w,
+                height: 6.w,
+                radius: 6.w,
+                color: AppColors.RED_COLOR,
+                child: Center(
+                    child: Icon(Icons.close,
+                        color: AppColors.WHITE_COLOR, size: 2.5.h)),
+              )),
     ]),
   );
 }

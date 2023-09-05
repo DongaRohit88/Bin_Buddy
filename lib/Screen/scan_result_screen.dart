@@ -79,25 +79,39 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                   height: 55.w,
                   width: 55.w,
                   decoration: BoxDecoration(
-                      color: AppColors.WHITE_COLOR,
                       border:
                           Border.all(color: AppColors.FONT_COLOR, width: 0.5.w),
                       borderRadius: BorderRadius.circular(55.w)),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(55.w),
-                    child: widget.type != "1"
-                        ? Padding(
-                            padding: const EdgeInsets.all(1.0),
-                            child: Image.file(File(widget.imagePath),
-                                fit: BoxFit.cover),
-                          )
-                        : Padding(
-                            padding: const EdgeInsets.all(1.0),
-                            child: Image.network(widget.imagePath,
-                                fit: BoxFit.cover),
-                          ),
-                  ),
+                      borderRadius: BorderRadius.circular(55.w),
+                      child: widget.type != "1"
+                          ? Image.file(File(widget.imagePath),
+                              fit: BoxFit.cover)
+                          : Image.network(widget.imagePath, fit: BoxFit.cover)),
                 ),
+                // Container(
+                //   height: 55.w,
+                //   width: 55.w,
+                //   decoration: BoxDecoration(
+                //       color: AppColors.WHITE_COLOR,
+                //       border:
+                //           Border.all(color: AppColors.FONT_COLOR, width: 0.5.w),
+                //       borderRadius: BorderRadius.circular(55.w)),
+                //   child: ClipRRect(
+                //     borderRadius: BorderRadius.circular(55.w),
+                //     child: widget.type != "1"
+                //         ? Padding(
+                //             padding: const EdgeInsets.all(1.0),
+                //             child: Image.file(File(widget.imagePath),
+                //                 fit: BoxFit.cover),
+                //           )
+                //         : Padding(
+                //             padding: const EdgeInsets.all(1.0),
+                //             child: Image.network(widget.imagePath,
+                //                 fit: BoxFit.cover),
+                //           ),
+                //   ),
+                // ),
               ]),
               SizedBox(height: 3.h),
 
